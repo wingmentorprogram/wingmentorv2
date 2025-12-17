@@ -277,7 +277,7 @@ export const MindMap: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto py-10 relative select-none">
+    <div className="w-full max-w-6xl mx-auto py-10 relative select-none overflow-x-auto">
       
       <div 
         className={`fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-500 z-40 pointer-events-none
