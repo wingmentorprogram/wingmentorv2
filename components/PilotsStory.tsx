@@ -149,10 +149,10 @@ export const PilotsStory: React.FC = () => {
                 </div>
 
                 {/* STORY PATH CONTAINER */}
-                <div className="relative w-full max-w-3xl">
+                <div className="relative w-full max-w-5xl">
                     
                     {/* SVG Container for Path & Line (BEHIND CONTENT) */}
-                    <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-visible" style={{ height: '100%', minHeight: '1200px' }} preserveAspectRatio="none">
+                    <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-visible" style={{ height: '100%', minHeight: '1200px' }} preserveAspectRatio="none" viewBox="0 0 800 1300">
                         <defs>
                             <mask id="line-mask">
                                 <path 
@@ -266,28 +266,26 @@ export const PilotsStory: React.FC = () => {
                             strokeLinecap="round"
                             mask="url(#line-mask)"
                         />
-                    </svg>
-                    
-                    {/* The Airplane Icon - in its own container for layering (ABOVE CONTENT) */}
-                    <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-30">
-                        <img 
-                            src={PLANE_ICON}
-                            alt="Airplane navigating the flight path"
+                        
+                        {/* The Airplane Icon - in its own container for layering (ABOVE CONTENT) */}
+                        <image
+                            href={PLANE_ICON}
+                            x={storyState.planeX - 25} // Center anchor (width 50/2)
+                            y={storyState.planeY - 25} // Center anchor (height 50/2)
+                            width="50"
+                            height="50"
+                            transform={`rotate(${storyState.planeAngle}, ${storyState.planeX}, ${storyState.planeY})`}
                             style={{
-                                position: 'absolute',
-                                width: 50,
-                                height: 50,
-                                left: `${storyState.planeX}px`,
-                                top: `${storyState.planeY}px`,
-                                transform: `translate(-50%, -50%) rotate(${storyState.planeAngle}deg)`,
-                                filter: 'drop-shadow(3px 5px 2px rgba(0,0,0,0.3))',
                                 opacity: storyState.progress > 0 ? 1 : 0,
                                 transition: 'opacity 0.3s ease',
-                                transformOrigin: 'center center'
+                                transformBox: 'fill-box',
+                                transformOrigin: 'center'
                             }}
                         />
-                    </div>
-
+                    </svg>
+                    
+                    {/* HTML Content Overlay */}
+                    
                     {/* STAGE 1: Starter Mentee (Top Left) */}
                     <div ref={starterMenteeRef} className="relative mb-64 flex justify-start pl-4 md:pl-10">
                         <div className="relative w-64 h-96 md:w-80 md:h-[28rem] overflow-hidden group border-2 border-black/50 rounded-lg shadow-2xl">
